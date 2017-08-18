@@ -1,9 +1,9 @@
-=== Plugin Name ===
+=== WooCommerce Disable Local Pickup on Ship to Different Address ===
 Contributors: mariankadanka
-Donate link: https://github.com/marian-kadanka/
-Tags: local pickup, disable local pickup, ship to different address, different address shipping
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=marian.kadanka@gmail.com&item_name=Donation+for+Marian+Kadanka
+Tags: local pickup, disable local pickup, ship to different address, different address shipping, woocommerce
 Requires at least: 3.0.1
-Tested up to: 4.7.3
+Tested up to: 4.8.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,15 +12,20 @@ An extension that disables WooCommerce built-in Local Pickup shipment method on 
 
 == Description ==
 
-This plugin turns off availability of WooCommerce built-in Local Pickup shipment method on the checkout page when a customer 
+This plugin turns off WooCommerce built-in Local Pickup shipment method availability on the checkout page when a customer 
 chooses to ship an order to a different than billing address.
 
 Works with WooCommerce built-in Local Pickup shipment method only. There are no settings at all, just activate the plugin.
 
 == Installation ==
 
-1. Upload `wc-disable-local-pickup-on-shipping.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Go to Plugins > Add New > Search
+2. Type WooCommerce Disable Local Pickup on Ship to Different Address in the search box and hit Enter
+3. Click on the button Install and then activate the plugin
+
+= Manual Installation =
+
+The manual installation method involves downloading our plugin and uploading it to your webserver via your favourite FTP application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
 == Changelog ==
 
