@@ -3,8 +3,8 @@ Contributors: mariankadanka
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=marian.kadanka@gmail.com&item_name=Donation+for+Marian+Kadanka
 Tags: local pickup, disable local pickup, ship to different address, different address shipping, woocommerce
 Requires at least: 3.0.1
-Tested up to: 4.8.1
-Stable tag: 1.0
+Tested up to: 4.9
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,9 @@ Works with WooCommerce built-in Local Pickup shipment method only. There are no 
 The manual installation method involves downloading our plugin and uploading it to your webserver via your favourite FTP application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
 == Changelog ==
+
+= 1.1 =
+* Wordpress compatibility version bump.
 
 = 1.0 =
 * Initial release.

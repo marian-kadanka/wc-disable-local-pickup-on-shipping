@@ -4,7 +4,7 @@
  * Plugin Name:       WooCommerce Disable Local Pickup on Ship to Different Address
  * Plugin URI:        https://wordpress.org/plugins/woo-disable-local-pickup-on-ship-to-different-address/
  * Description:       An extension that disables WooCommerce built-in Local Pickup shipment method on checkout when a customer chooses to ship to a different address
- * Version:           1.0
+ * Version:           1.1
  * Author:            Marian Kadanka
  * Author URI:        https://github.com/marian-kadanka/
  * License:           GPL-2.0+
