@@ -4,14 +4,15 @@
  * Plugin Name:       WooCommerce Disable Local Pickup on Ship to Different Address
  * Plugin URI:        https://wordpress.org/plugins/woo-disable-local-pickup-on-ship-to-different-address/
  * Description:       An extension that disables WooCommerce built-in Local Pickup shipment method on checkout when a customer chooses to ship to a different address
- * Version:           1.1
+ * Version:           1.2
  * Author:            Marian Kadanka
- * Author URI:        https://github.com/marian-kadanka/
+ * Author URI:        https://kadanka.net/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wcdlpos
  * Domain Path:       /languages
  * GitHub Plugin URI: marian-kadanka/woo-disable-local-pickup-on-ship-to-different-address
+ * WC tested up to:   5.0
  */
 
 /**
@@ -41,10 +42,15 @@ class WC_Disable_Local_Pickup_On_Shipping {
 
 	function __construct() {
 
-		add_filter( 'woocommerce_cart_shipping_packages', array( $this, 'package_add_s2da_var' ) );
+		add_action( 'wc_ajax_update_order_review', array( $this, 'hook_cart_shipping_packages' ), 1 );
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'checkout_update_s2da_flag' ) );
 		add_filter( 'woocommerce_shipping_local_pickup_is_available', array( $this, 'is_local_pickup_available' ), 10, 2 );
+		add_action( 'wc_ajax_checkout', array( $this, 'maybe_hook_package_rates' ), 1 );
 
+	}
+
+	function hook_cart_shipping_packages() {
+		add_filter( 'woocommerce_cart_shipping_packages', array( $this, 'package_add_s2da_var' ) );
 	}
 
 	/**
@@ -56,7 +62,7 @@ class WC_Disable_Local_Pickup_On_Shipping {
 		if ( count( $packages ) === 1 ) {
 
 			// only one iteration, but rather retain key=>value relation for compatibility
-			foreach ( $packages as $package_index => $package ) {
+			foreach ( $packages as $package_index => $unused ) {
 				$packages[ $package_index ]['wcdlpos_ship_to_different_address'] = $this->ship_to_different_address;
 			}
 		}
@@ -81,6 +87,23 @@ class WC_Disable_Local_Pickup_On_Shipping {
 		return $available && ! $this->ship_to_different_address;
 	}
 
+	function maybe_hook_package_rates() {
+		if ( isset( $_POST['ship_to_different_address'] ) ) {
+			add_filter( 'woocommerce_package_rates', array( $this, 'filter_package_rates' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * Filter package rates too, to fix "Invalid Payment Method" issue
+	 */
+	function filter_package_rates( $package_rates, $package ) {
+		foreach ( $package_rates as $id => $unused ) {
+			if ( substr( $id, 0, 12 ) === 'local_pickup' ) {
+				unset( $package_rates[ $id ] );
+			}
+		}
+		return $package_rates;
+	}
 }
 
 new WC_Disable_Local_Pickup_On_Shipping();
